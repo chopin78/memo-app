@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View ,FlatList } from 'react-native';
 import { List, FAB } from 'react-native-paper';
 import format from 'date-fns/format';
 import { useNavigation } from '@react-navigation/native';
+import { loadAll } from "./store";
 
 // const memos = [
 //   {
@@ -33,13 +34,11 @@ export const MainScreen = () => {
  
    useEffect(() => {
      const initialize = async () => {
-     const newMemos = await loadAll(); // (2)
-   setMemos(newMemos);
+       const newMemos = await loadAll(); // (2)
+       setMemos(newMemos);
      };
  
-     const unsubscribe = navigation.addListener('focus', initialize);
- 
-     return unsubscribe;
+     return navigation.addListener('focus', initialize);
    }, [navigation]);
 
   const onPressAdd = () =>{
