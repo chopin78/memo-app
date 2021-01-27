@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import {
-  StyleSheet,
-  KeyboardAvoidingView,
-  Platform
-} from 'react-native';
+import { StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { save } from './store';
@@ -17,10 +13,12 @@ export const ComposeScreen = () => {
       await save(text,Date.now());
       navigation.goBack();
     };
+
+    return onPressSave();
   };
 
   return (
-    <KeyboardAvoidingView 
+    <KeyboardAvoidingView
       style={styles.container}
     >
       <TextInput
